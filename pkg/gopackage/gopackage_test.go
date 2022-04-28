@@ -1,7 +1,8 @@
-package main
+package gopack
 
 import "testing"
 
 func TestMain(t *testing.T) {
-	main()
+
+	Run()
 }
