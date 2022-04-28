@@ -7,6 +7,7 @@ import "C"
 import "fmt"
 
 func Run() {
+
 	/*env := C.CPXENVptr(nil);
 	  lp := C.CPXLPptr(nil)
 	  status := C.int(0)
