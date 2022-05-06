@@ -64,9 +64,31 @@ import (
 	fmt.Println("Goodbye")
 }*/
 
+func check(e error) {
+	if e != nil {
+		panic(e)
+	}
+}
+
 func main() {
 	//SwigGo()
-	input := "lucas"
-	output := gopack_cplusplus_swig.CallLib(input)
+	// Read entire file content, giving us little control but
+	// making it very simple. No need to close the file.
+	/*fmt.Println("Reading input lp")
+	content, err := ioutil.ReadFile("compressed_model.lp")
+	check(err)
+
+	fmt.Println("converting input to string")
+	// Convert []byte to string and print to screen
+	input := string(content)
+	*/
+	fmt.Println("calling c++ lib")
+	output := gopack_cplusplus_swig.CallLib("/Users/luassuncao/c++-projects/cplusplus-cplex-example/cplusplus-cplex-lib/src/compressed_model.lp")
+
 	fmt.Println(output)
+	/*fmt.Println("converting output to byte")
+	byteOutput := []byte(output)
+	fmt.Println("writing output file")
+	err = os.WriteFile("outut.lp", byteOutput, 0644)
+	check(err)*/
 }
