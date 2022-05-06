@@ -13,7 +13,7 @@ CPPFLAGS= -std=c++17 $(INC)
 COPTFLAGS= -m64 -O3 -fPIC -fexceptions -DNDEBUG -DIL_STD -DLONG_MAX=0x7FFFFFFFL
 CPLEXINCDIR   = -I$(CPLEXDIR)/cplex/include -I$(CPLEXDIR)/concert/include
 CPLEXFLAGS  = $(CPPFLAGS) $(COPTFLAGS) $(CPLEXINCDIR) 
-CC = g++
+CC = gcc
 MAIN_SRC=$(SRC_DIR)/main.cpp
 
 MODEL_H=$(SRC_DIR)/model.h
@@ -24,12 +24,12 @@ model: $(MODEL_SRC) $(MODEL_H)
 	$(CC) $(CPLEXFLAGS) -c $(MODEL_SRC) -o $(MODEL_OBJ)
 
 clean_bin:
-	rm -f $(PROG_BIN)/*.o
+	rm -f $(PROG_BIN)/*.o $(PROG_BIN)/*.a
 clean:
 	rm -f Makefile.deps $(PROG_NAME).seq $(PROG_BIN)/*.o $(PROG_NAME)
-all: cplusplus-cplex-example clean_bin
-cplusplus-cplex-example: model
-	$(CC) $(CPLEXFLAGS) $(MODEL_SRC) $(MAIN_SRC) -o $(PROG_NAME) $(CLNFLAGS)
+all: cplusplus-cplex-lib clean_bin
+cplusplus-cplex-lib: model
+	libtool -static -o $(PROG_BIN)/libmodelcplusplus.a $(PROG_BIN)/model.o
 
 Makefile.deps:
 	$(CC) $(CPLEXFLAGS) -MM $(SRC_DIR)/*.cpp > Makefile.deps

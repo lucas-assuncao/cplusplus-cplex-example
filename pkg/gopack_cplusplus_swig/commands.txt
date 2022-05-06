@@ -1,0 +1,5 @@
+swig -go -intgosize 64 -c++ gopack_cplusplus_swig.i 
+//#cgo LDFLAGS: -lstdc++ -L/Users/luassuncao/c++-projects/cplusplus-cplex-example/cplusplus-cplex-lib/bin -L/Applications/CPLEX_Studio1210//cplex/lib/x86-64_osx/static_pic -L/Applications/CPLEX_Studio1210/concert/lib/x86-64_osx/static_pic -lilocplex -lconcert -lcplex -lm -lpthread -lmodelcplusplus
+//#cgo CXXFLAGS: -I/Users/luassuncao/c++-projects/cplusplus-cplex-example/cplusplus-cplex-lib/src -Isrc -m64 -O3 -fPIC -fexceptions -DNDEBUG -DIL_STD -DLONG_MAX=0x7FFFFFFFL -I/Applications/CPLEX_Studio1210/cplex/include -I/Applications/CPLEX_Studio1210/concert/include
+
+

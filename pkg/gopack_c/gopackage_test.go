@@ -1,8 +1,7 @@
-package gopack
+package gopack_c
 
 import "testing"
 
 func TestMain(t *testing.T) {
-
-	Run()
+	RunC()
 }
