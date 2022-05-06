@@ -1,5 +1,24 @@
 #include "model.h"
 
+const char * buildAndRunModel(const char * input)
+{
+  IloEnv env;
+	IloCplex cplex(env);
+	cplex.setOut(env.getNullStream());
+	IloModel model(env);
+
+	IloNumVarArray x(env);
+
+	x = IloNumVarArray(env, 3, 0.0, 1.0, ILOFLOAT);
+
+    populateModel(env, model,x);
+    optimizeModel(cplex,env,model,x,50);
+
+    cplex.end();
+    env.end();
+    return input;
+}
+
 void populateModel(IloEnv& env, IloModel& model, IloNumVarArray & x)
 {
     model.add(x[0] + x[1] + x[2] <= 2);
